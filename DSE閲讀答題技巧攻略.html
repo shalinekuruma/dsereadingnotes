@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSE 白話文閱讀策略 🌸 雙色精美版</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Noto+Sans+HK:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Nunito"', '"Noto Sans HK"', 'sans-serif'],
+                    },
+                    colors: {
+                        cutePink: '#FFD1DC',
+                        cuteBlue: '#B5E2FF',
+                        cuteYellow: '#FFF5BA',
+                        cutePurple: '#E2C2FF',
+                        cuteGreen: '#C1FFD7',
+                        textMain: '#5A4E4D',
+                        textHighlight: '#FF7F9F'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #FFF0F5; color: #5A4E4D; scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #FFF0F5; }
+        ::-webkit-scrollbar-thumb { background: #FFB6C1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FF9EAE; }
+
+        .cute-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px rgba(255, 182, 193, 0.3);
+            border: 2px solid #FFE4E1;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        .cute-card:hover { box-shadow: 0 15px 30px rgba(255, 182, 193, 0.4); }
+
+        .cute-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid #FFE4E1;
+            margin-bottom: 1.5rem;
+        }
+        .cute-table th { background-color: #FFD1DC; color: #5A4E4D; font-weight: 700; padding: 12px; text-align: left; }
+        .cute-table td { padding: 12px; border-top: 1px solid #FFE4E1; font-size: 0.9rem; vertical-align: top;}
+        .cute-table tr:nth-child(even) td { background-color: #FFF9FA; }
+        .cute-table tr:hover td { background-color: #FFF0F5; }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .floating { animation: floating 3s ease-in-out infinite; }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .toc-link.active { background-color: #FFD1DC; font-weight: bold; color: #E83A59; border-left: 4px solid #E83A59;}
+        
+        .dse-question-box {
+            background-color: #f8fafc;
+            border-left: 5px solid #FF7F9F;
+            padding: 1rem;
+            border-radius: 0 12px 12px 0;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen font-sans">
+
+    <header class="bg-gradient-to-r from-cutePink via-cutePurple to-cuteBlue py-16 px-6 rounded-b-[40px] shadow-lg text-center relative overflow-hidden">
+        <div class="absolute top-4 left-10 text-4xl floating opacity-60">☁️</div>
+        <div class="absolute top-10 right-20 text-5xl floating opacity-60" style="animation-delay: 1s;">✨</div>
+        <div class="absolute bottom-4 left-1/4 text-3xl floating opacity-60" style="animation-delay: 2s;">🌸</div>
+        
+        <h1 class="text-4xl md:text-6xl font-black text-white drop-shadow-md mb-4 tracking-wider">
+            <i class="fas fa-book-open mr-3"></i>DSE 白話文閱讀策略
+        </h1>
+        <p class="text-xl font-bold text-white/90 mb-2 drop-shadow">Chinese Reading Comprehension Strategies</p>
+    </header>
+
+    <main class="container mx-auto max-w-7xl px-4 py-8 flex flex-col md:flex-row gap-8">
+        
+        <aside class="md:w-1/4 flex-shrink-0 z-10">
+            <div class="sticky top-8 cute-card p-6">
+                <h2 class="text-2xl font-black mb-4 text-textHighlight flex items-center gap-2">
+                    <i class="fas fa-map-signs"></i> 目錄
+                </h2>
+                <ul class="space-y-1 text-sm font-bold text-gray-700">
+                    <li><a href="#map" class="toc-link block p-2.5 rounded-xl hover:bg-cutePink/50 transition"><i class="fas fa-map text-blue-400 w-5"></i> 閱讀地圖</a></li>
+                    <li><a href="#strategy-01" class="toc-link block p-2.5 rounded-xl hover:bg-cutePink/50 transition"><i class="fas fa-user text-pink-400 w-5"></i> 01 - 人物描寫</a></li>
+                    <li><a href="#strategy-02" class="toc-link block p-2.5 rounded-xl hover:bg-cutePink/50 transition"><i class="fas fa-mountain text-green-400 w-5"></i> 02 - 景物描寫</a></li>
+                    <li><a href="#strategy-03" class="toc-link block p-2.5 rounded-xl hover:bg-cutePink/50 transition"><i class="fas fa-layer-group text-blue-400 w-5"></i> 03 - 行文佈局</a></li>
+                    <li><a href="#strategy-04" class="toc-link block p-2.5 rounded-xl hover:bg-cutePink/50 transition"><i class="fas fa-search text-purple-400 w-5"></i> 04 - 字詞句賞析</a></li>
+                    <li><a href="#strategy-05" class="toc-link block p-2.5 rounded-xl hover:bg-cutePink/50 transition"><i class="fas fa-dove text-yellow-500 w-5"></i> 05 - 比喻象徵</a></li>
+                    <li><a href="#strategy-06" class="toc-link block p-2.5 rounded-xl hover:bg-cutePink/50 transition"><i class="fas fa-music text-pink-500 w-5"></i> 06 - 語調節奏句式</a></li>
+                    <li><a href="#strategy-07" class="toc-link block p-2.5 rounded-xl hover:bg-cutePink/50 transition"><i class="fas fa-balance-scale text-indigo-400 w-5"></i> 07 - 比較矛盾改寫評論題</a></li>
+                    <li><a href="#strategy-08" class="toc-link block p-2.5 rounded-xl hover:bg-cutePink/50 transition"><i class="fas fa-lightbulb text-yellow-400 w-5"></i> 08 - 主題與題目</a></li>
+                    <li><a href="#strategy-09" class="toc-link block p-2.5 rounded-xl hover:bg-cutePink/50 transition"><i class="fas fa-magic text-teal-400 w-5"></i> 09 - 巧妙之處</a></li>
+                    <li><a href="#strategy-10" class="toc-link block p-2.5 rounded-xl hover:bg-cutePink/50 transition"><i class="fas fa-book-reader text-orange-400 w-5"></i> 10 - 詩歌小說解讀</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="md:w-3/4 space-y-2 pb-20">
+
+            <section id="map" class="cute-card p-8 bg-gradient-to-br from-blue-50 to-indigo-50">
+                <h2 class="text-3xl font-black mb-6 flex items-center gap-3 text-indigo-800">
+                    <span class="bg-indigo-200 w-12 h-12 flex items-center justify-center rounded-2xl shadow-sm text-2xl">🗺️</span> 白話文閱讀地圖
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-indigo-100">
+                        <h3 class="font-bold text-indigo-600 mb-2 border-b pb-1">基礎知識</h3>
+                        <ul class="text-sm space-y-1 text-gray-600 list-disc ml-4">
+                            <li>修辭及作用</li>
+                            <li>詞句理解</li>
+                            <li>標點符號及作用</li>
+                            <li>寫作手法及效果</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-indigo-100">
+                        <h3 class="font-bold text-indigo-600 mb-2 border-b pb-1">常見題型</h3>
+                        <ul class="text-sm space-y-1 text-gray-600 list-disc ml-4">
+                            <li>題目的作用</li>
+                            <li>文章結構及分段</li>
+                            <li>寫作手法及表達效果</li>
+                            <li>角色行為原因分析</li>
+                            <li>辨認修辭及作用</li>
+                            <li>比較題 / 填表題</li>
+                            <li>矛盾句式</li>
+                            <li>字詞標點替換</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-indigo-100">
+                        <h3 class="font-bold text-indigo-600 mb-2 border-b pb-1">主題理解 (文章主旨)</h3>
+                        <ul class="text-sm space-y-1 text-gray-600 list-disc ml-4">
+                            <li>分析表達效果</li>
+                            <li>人物性格情感</li>
+                            <li>人生哲理</li>
+                            <li>鄉土情懷</li>
+                            <li>尋找自我</li>
+                            <li>傳統與現代</li>
+                            <li>城市與鄉村</li>
+                            <li>個人與社會</li>
+                            <li>漂泊與尋根</li>
+                            <li>教育與成長</li>
+                            <li>父母子女</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="strategy-01" class="cute-card p-8">
+                <div class="inline-block bg-pink-100 text-pink-600 font-black px-4 py-1 rounded-full mb-2">Strategy 01</div>
+                <h2 class="text-3xl font-black mb-6 flex items-center gap-3">
+                    <span class="bg-cutePink w-12 h-12 flex items-center justify-center rounded-2xl shadow-sm text-2xl">🧸</span> 人物描寫
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-orange-50 p-5 rounded-2xl border border-orange-100">
+                        <h3 class="text-xl font-bold mb-3 text-orange-600"><i class="fas fa-bullseye"></i> 考點</h3>
+                        <ul class="list-disc list-inside space-y-1 ml-2 text-sm">
+                            <li>人物性格</li>
+                            <li>人物感受 / 態度 / 看法</li>
+                            <li>行為原因分析</li>
+                            <li>描寫手法</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 p-5 rounded-2xl border border-blue-100">
+                        <h3 class="text-xl font-bold mb-3 text-blue-600"><i class="fas fa-brain"></i> 知識點：人物形象</h3>
+                        <ul class="list-disc list-inside space-y-1 ml-2 text-sm">
+                            <li>性格 (從語言、外貌、行動、心理、神態歸納)</li>
+                            <li>身份地位</li>
+                            <li>心理狀態、思想感情</li>
+                            <li>價值觀信念</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 mt-6 border-l-4 border-pink-400 pl-3">描寫方法與作用</h3>
+                <div class="overflow-x-auto">
+                    <table class="cute-table mb-4">
+                        <thead>
+                            <tr><th>描寫方法</th><th>分類 / 說明</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="font-bold text-pink-700 w-1/4">直接描寫</td><td>語言、肖像、行動、心理活動</td></tr>
+                            <tr><td class="font-bold text-pink-700">間接描寫</td><td>襯托、對比、第三者評價</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bg-pink-50 p-4 rounded-xl text-sm mb-6 border border-pink-100">
+                    <p><strong>作用：</strong>使讀者能聞其聲,如見其人; 形成鮮明的對比; 用A的……襯托B的……突出B的鮮明形象。</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h4 class="font-bold text-pink-600 mb-2">對話的作用</h4>
+                        <ul class="list-disc ml-5 text-sm space-y-1">
+                            <li>鮮明表達人物個性、身份、經歷、思想</li>
+                            <li>推動情節發展</li>
+                            <li>表達主題 (避免作者干擾,由讀者藉人物語言揣摩)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-pink-600 mb-2">各類描寫作用</h4>
+                        <ul class="list-disc ml-5 text-sm space-y-1">
+                            <li><strong>語言：</strong>突出人物形象、心理、情緒</li>
+                            <li><strong>外貌：</strong>反映人物生活狀況、性格、身體</li>
+                            <li><strong>行動：</strong>反映人物心理</li>
+                            <li><strong>心理：</strong>反映人物性格、精神</li>
+                            <li><strong>神態：</strong>人物情緒、感情變化</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 mt-6 border-l-4 border-pink-400 pl-3">人物角色行為分析</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-gray-50 p-4 rounded-xl">
+                        <h4 class="font-bold mb-2">分析維度</h4>
+                        <ol class="list-decimal ml-4 text-sm space-y-1">
+                            <li>性格</li><li>情感經歷</li><li>身份處境</li><li>價值信念</li><li>行為目的</li>
+                        </ol>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-xl">
+                        <h4 class="font-bold mb-2">人物反應</h4>
+                        <ol class="list-decimal ml-4 text-sm space-y-1">
+                            <li>心理</li><li>說話</li><li>表情/神態</li><li>行動</li>
+                        </ol>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-xl">
+                        <h4 class="font-bold mb-2">考問行為目的考慮因素</h4>
+                        <ol class="list-decimal ml-4 text-sm space-y-1">
+                            <li>文本情景</li><li>行動</li><li>目標 (欲達至的效果)</li>
+                        </ol>
+                        <div class="mt-2 text-xs font-bold text-gray-500">時間軸: 過去 ➔ 現在 ➔ 將來</div>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 mt-6 border-l-4 border-pink-400 pl-3">常用態度與字詞</h3>
+                <div class="space-y-4 mb-6">
+                    <div class="bg-white border p-4 rounded-xl">
+                        <h4 class="font-bold text-pink-600 mb-2">對人或事情的態度</h4>
+                        <p class="text-sm leading-relaxed">樂觀、悲觀、正面、負面、欣賞、批評、尊敬、欽佩、讚揚、同情、憐憫、體諒、惋惜、不滿、厭惡、憎恨、譴責、嘲諷、鄙視、蔑視、不屑、輕視</p>
+                    </div>
+                    <div class="bg-white border p-4 rounded-xl">
+                        <h4 class="font-bold text-pink-600 mb-2">人生態度</h4>
+                        <p class="text-sm leading-relaxed">樂天知命、及時行樂、爭名逐利、隨遇而安、堅守原則、不與世俗同流合污、公私分明、剛正不阿、自重</p>
+                    </div>
+                </div>
+
+                <h4 class="font-bold text-pink-600 mb-2">常見的感受表達字詞</h4>
+                <div class="overflow-x-auto mb-6">
+                    <table class="cute-table">
+                        <tr><th class="w-1/5">情感類別</th><th>情感詞彙</th></tr>
+                        <tr><td class="font-bold text-green-600">正向情感</td><td>歡樂、欣喜、欣慰、自豪、安心、滿足、崇拜、羨慕、感激、關懷、期待、激動、好奇</td></tr>
+                        <tr><td class="font-bold text-red-600">負面情感</td><td>可憐、同情、憐憫、思念、擔憂、不捨、悲傷、愧疚、羞愧、寂寞、心痛、失落、失望、煩惱、詫異、焦急、憂慮、害怕、不安、驚訝、疑惑、怨憤、憎恨、厭惡、憤怒、反感、不滿、淡然、尷尬、矛盾</td></tr>
+                    </table>
+                </div>
+
+                <h4 class="font-bold text-pink-600 mb-2">常見的形象性格表達字詞</h4>
+                <p class="text-xs text-gray-500 mb-2">性格-必須是形容詞。形象-包括社會地位/性格/身分/打扮(形容詞/名詞)</p>
+                <div class="overflow-x-auto mb-6">
+                    <table class="cute-table">
+                        <tr><th class="w-1/6">類別</th><th class="w-2/5 text-green-700">正面</th><th class="w-2/5 text-red-700">負面</th></tr>
+                        <tr><td class="font-bold">活力態度</td><td>熱情、活潑、樂觀、開朗、率直、勇敢、天真、果斷、謹慎、冷靜、細心</td><td>魯莽、急躁、衝動、敷衍塞責、粗心、驕傲、傲慢、自大、好勝、固執、懶惰、糊塗、自卑、孤僻、畏縮、卑微、吝嗇、愚昧無知、孤陋寡聞、自以為是</td></tr>
+                        <tr><td class="font-bold">人際情感</td><td>親切、慈祥、平易近人、溫柔體貼、善解人意、關愛家人、外冷內熱</td><td>冷漠、橫蠻無理、愛管閒事、沉默寡言、自尊心重</td></tr>
+                        <tr><td class="font-bold">品德價值</td><td>善良、誠實、正直、慷慨、重情義、待人寬厚、樂於助人、捨己為人、大公無私、忠心耿耿、溫文有禮、講究禮節、信守承諾、淡泊名利</td><td>狡猾、陰險、苛刻、挑剔、殘忍、虛偽、貪心、自私自利、心胸狹隘、忘恩負義、奢侈浪費、見利忘義</td></tr>
+                        <tr><td class="font-bold">能力處事</td><td>勤奮、機靈、謙虛、幽默、專心、好學、富創意、求知好奇、有智謀、適應力強、靈活變通、盡忠職守、有責任感、直言敢諫</td><td>急功近利、目光短淺、思想狹隘、優柔寡斷、不擅交際、不擅表達、好逸惡勞、好高騖遠、狂妄自大、不自量力</td></tr>
+                    </table>
+                </div>
+
+                <div class="bg-purple-50 p-4 rounded-xl border border-purple-100 mb-6">
+                    <h4 class="font-bold text-purple-700 mb-2">常見抱負 / 志向</h4>
+                    <p class="text-sm">忠君愛國、為民請命、安貧樂道、慎終追遠、效法自然、文化傳承、救世濟民、捨生取義、民貴君輕、隱逸避世、建功立業、以民為本</p>
+                </div>
+
+                <div class="dse-question-box">
+                    <h4 class="font-bold text-gray-800 mb-3"><i class="fas fa-pencil-alt text-pink-500"></i> DSE 題型實戰</h4>
+                    <ol class="list-decimal ml-5 text-sm space-y-2 text-gray-700">
+                        <li>作者以趙胖子凸顯曾先生與別不同,這是甚麼描寫手法?作者如何運用這種手法?試舉例說明。(4分)</li>
+                        <li>曾先生嗜甜,從中悟出什麼處世態度?(2分)</li>
+                        <li>綜合全文,作者藉着不同的片段顯示「你」對「他」感受的改變。(6分)</li>
+                        <li>作者記敘常伯章的行事,對於刻畫杜環的形象有什麼作用?試略加說明。</li>
+                        <li>為什麼他中途又再次決定不出席婚禮?</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="strategy-02" class="cute-card p-8">
+                <div class="inline-block bg-green-100 text-green-600 font-black px-4 py-1 rounded-full mb-2">Strategy 02</div>
+                <h2 class="text-3xl font-black mb-6 flex items-center gap-3">
+                    <span class="bg-cuteGreen w-12 h-12 flex items-center justify-center rounded-2xl shadow-sm text-2xl">🌸</span> 景物描寫
+                </h2>
+
+                <div class="bg-green-50 p-4 rounded-xl border border-green-100 mb-6 inline-block">
+                    <h3 class="font-bold text-green-700 mb-1"><i class="fas fa-bullseye"></i> 考點</h3>
+                    <ul class="list-disc ml-5 text-sm">
+                        <li>描寫方法</li><li>景物描寫的類別</li><li>景物描寫的作用</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-green-400 pl-3">描寫方法大解密</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="cute-table">
+                        <thead>
+                            <tr class="!bg-green-100"><th class="!text-green-800 w-1/6">方法</th><th class="!text-green-800 w-2/5">解釋</th><th class="!text-green-800">作用 / 效果</th></tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <tr><td class="font-bold">步移法</td><td>隨觀察位置的改變,把觀察的不同景物依次描寫出來。</td><td>使讀者如跟隨觀察者的足跡瀏覽景物,有條理地掌握觀察者所描寫的環境。</td></tr>
+                            <tr><td class="font-bold">定點描寫法</td><td>在一個固定的觀察位置(立足點),把所看到的景物按一定的順序描寫出來(由近至遠、由高至低、由左至右)。</td><td>描寫層次清楚,鮮明逼真,給人以如臨其境的感覺。</td></tr>
+                            <tr><td class="font-bold">隨時推移法</td><td>按照時間轉移的某種順序來描寫景物的方法(早晚、春夏秋冬、日出日落等)。</td><td>抓住同一景物在不同時間的特點,以呈現景物在不同時間的不同面貌。</td></tr>
+                            <tr><td class="font-bold">層遞</td><td>把景物由大至小、由高至低、由遠至近、由內至外,或從相反角度,一層一層地進行描寫。</td><td>逐步引出焦點,突出描寫的主體,加深讀者的印象。</td></tr>
+                            <tr><td class="font-bold">直接描寫 / 正面描寫</td><td>把描寫對象直接具體描繪出來,例如形狀、顏色等。</td><td>準確細緻突出描寫對象的特點。</td></tr>
+                            <tr><td class="font-bold">間接描寫 / 側面描寫</td><td>不直接描繪要描寫的對象,而是通過刻畫對象周圍的人、事物、環境、氣氛等,來表現描寫對象的特點。</td><td>從不同角度反映描寫對象的特點,表現人物更為含蓄。</td></tr>
+                            <tr><td class="font-bold">感官描寫</td><td>視覺(形態、色彩、動作及影像)、聽覺(聲音)、嗅覺(氣味)、味覺(甜、酸、苦、辣)、觸覺(柔軟、粗糙、平滑)。</td><td>更立體突顯事物的特點,使事物更逼真,使人如臨其境,引起讀者共鳴。</td></tr>
+                            <tr><td class="font-bold">靜態/動態描寫</td><td>描寫在靜止狀態的景物為靜態描寫; 描繪成在活動狀態或變化中的景物為動態描寫。</td><td>靜態: 具體勾勒景物形態之特徵。<br>動態: 賦予事物動感和變化,加強感染力。</td></tr>
+                            <tr><td class="font-bold">白描</td><td>用簡潔樸實的筆調,描寫景物,少運用比擬、誇張等修辭手法。</td><td>用傳神幾筆勾勒,語言精煉,鮮明生動,不拖泥帶水。</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-green-400 pl-3">景物描寫的類別</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="cute-table">
+                        <thead><tr class="!bg-green-100"><th class="!text-green-800 w-1/6">類別</th><th class="!text-green-800 w-2/5">說明</th><th class="!text-green-800">作用 / 效果</th></tr></thead>
+                        <tbody class="text-sm">
+                            <tr>
+                                <td class="font-bold">自然環境</td>
+                                <td>描寫自然景觀如人物活動的時間、地點、天氣、季節和景物場景如山川、湖海等自然景物。</td>
+                                <td>
+                                    <ul class="list-disc ml-4 space-y-1">
+                                        <li>交代故事發生的時間、地點及人物活動的空間</li>
+                                        <li>渲染××環境氣氛、烘托人物的××情感</li>
+                                        <li>預示人物的××命運、表現人物某性格</li>
+                                        <li>推動故事情節的發展</li>
+                                        <li>揭示文章主題</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">社會環境</td>
+                                <td>描寫社會狀況或者人物活動的場景和周圍(室內)的佈局、陳設。</td>
+                                <td>
+                                    <ul class="list-disc ml-4 space-y-1">
+                                        <li>交代故事發生的××時代背景、時代特徵、社會習俗、思想觀念和人與人之間的關係</li>
+                                        <li>渲染××環境氣氛</li>
+                                        <li>襯托人物心情</li>
+                                        <li>推動情節發展</li>
+                                        <li>深化主題</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 mt-8 border-l-4 border-green-400 pl-3">景物描寫作用與常見題型</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-green-50 p-5 rounded-2xl border border-green-100">
+                        <h4 class="font-bold text-green-700 mb-2">內容作用</h4>
+                        <ol class="list-decimal list-inside text-sm space-y-1 ml-2">
+                            <li>描寫景物的……突出……的特點, 渲染……的氣氛</li>
+                            <li>烘托人物……的心情/形象</li>
+                            <li>交代背景,設置懸念</li>
+                            <li>留下想象的空間,深化文章主題</li>
+                        </ol>
+                        <h4 class="font-bold text-green-700 mb-2 mt-4">結構作用</h4>
+                        <ol class="list-decimal list-inside text-sm space-y-1 ml-2">
+                            <li>交代……的背景,為下文作鋪墊推動情節的發展</li>
+                            <li>與……作對比,為……作鋪墊; 呼應——首尾呼應; 呼應題目</li>
+                        </ol>
+                    </div>
+                    <div class="bg-blue-50 p-5 rounded-2xl border border-blue-100">
+                        <h4 class="font-bold text-blue-700 mb-2">常見題型</h4>
+                        <ol class="list-decimal list-inside text-sm space-y-2 ml-2">
+                            <li>作者為什麼要描寫景物A?</li>
+                            <li>第一段的景物描寫有什麼作用?</li>
+                            <li>結尾的景物描寫有什麼作用?</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="dse-question-box">
+                    <h4 class="font-bold text-gray-800 mb-3"><i class="fas fa-pencil-alt text-green-500"></i> DSE 題型實戰</h4>
+                    <ol class="list-decimal ml-5 text-sm space-y-2 text-gray-700">
+                        <li>試根據第2段村落住屋較密集路段的人和物,說明作者如何營造這種氣氛。</li>
+                        <li>《山居秋暝》一詩,除了描寫山中景色,還寄寓作者高潔的品格。試就「明月松間照」一句說明。</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="strategy-03" class="cute-card p-8">
+                <div class="inline-block bg-blue-100 text-blue-600 font-black px-4 py-1 rounded-full mb-2">Strategy 03</div>
+                <h2 class="text-3xl font-black mb-6 flex items-center gap-3">
+                    <span class="bg-cuteBlue w-12 h-12 flex items-center justify-center rounded-2xl shadow-sm text-2xl">📝</span> 行文佈局
+                </h2>
+
+                <div class="bg-blue-50 p-4 rounded-xl border border-blue-100 mb-6 inline-block">
+                    <h3 class="font-bold text-blue-700 mb-1"><i class="fas fa-bullseye"></i> 考點</h3>
+                    <ul class="list-disc ml-5 text-sm">
+                        <li>開頭結尾作用</li><li>常見寫作手法及佈局</li><li>呼應/伏筆</li><li>句段作用</li><li>詳略安排</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-blue-400 pl-3">開頭與結尾作用</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-white p-4 rounded-xl border border-blue-100 shadow-sm">
+                        <h4 class="font-black text-blue-600 border-b pb-2 mb-2 text-center">開頭</h4>
+                        <ul class="list-disc list-inside text-sm space-y-2">
+                            <li><strong>修辭：</strong>生動形象,如詩如畫,富有氣勢</li>
+                            <li><strong>引用詩詞：</strong>吸引讀者,突出中心</li>
+                            <li><strong>聯想回憶：</strong>親切自然</li>
+                            <li><strong>對比：</strong>突出主題</li>
+                            <li><strong>描寫：</strong>勾勒環境,渲染氣氛</li>
+                            <li><strong>聲音：</strong>未見其人,先聞其聲</li>
+                            <li><strong>設問：</strong>引人入勝,發人深思</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-blue-100 shadow-sm">
+                        <h4 class="font-black text-blue-600 border-b pb-2 mb-2 text-center">結尾</h4>
+                        <ul class="list-disc list-inside text-sm space-y-2">
+                            <li><strong>感歎：</strong>抒發強烈的情感</li>
+                            <li><strong>事未完/言未盡：</strong>作者說的話或人物要說的話沒有直接說出來,給讀者留下巨大的想象空間,讀來令人回味,引人深思。</li>
+                            <li><strong>象徵：</strong>含蓄婉轉,象徵某種精神,發人深省,暗示主題,強化作者感情。</li>
+                            <li><strong>引用：</strong>鞭策、指引、鼓勵</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-4 mb-8">
+                    <div class="bg-gradient-to-r from-blue-100 to-transparent p-4 rounded-l-xl border-l-4 border-blue-500 flex-1">
+                        <p class="font-bold text-blue-800 mb-1"><i class="fas fa-pencil-alt mr-2"></i> 答題步驟：</p>
+                        <p class="text-sm">1. 指出開頭/結尾的內容 ➔ 2. 結合文章內容分析作用</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-xl border flex-1">
+                        <p class="font-bold text-gray-700 mb-1"><i class="fas fa-question-circle mr-2"></i> 常見題型：</p>
+                        <ul class="text-sm list-disc ml-5">
+                            <li>文章這樣開頭有什麼作用?</li>
+                            <li>文章這樣結尾有何深意?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-blue-400 pl-3">常見結構作用與佈局</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="cute-table">
+                        <thead><tr class="!bg-blue-100"><th class="!text-blue-800 w-1/5">寫作手法</th><th class="!text-blue-800">好處 / 解說</th></tr></thead>
+                        <tbody class="text-sm">
+                            <tr><td class="font-bold">開門見山</td><td>直接點明重點,使讀者迅速掌握核心內容,留下深刻印象</td></tr>
+                            <tr><td class="font-bold">首尾呼應</td><td>末段與開頭相呼應,強化主題,使結構嚴謹。</td></tr>
+                            <tr><td class="font-bold">前後呼應</td><td>文中前後內容相互呼應,增強邏輯連貫性與說服力。</td></tr>
+                            <tr><td class="font-bold">承上啟下</td><td>過渡段落或句子承接上文,並引出下文內容,使文章流暢自然。</td></tr>
+                            <tr><td class="font-bold">詳略得當</td><td>突出重點,避免冗長 (詳細描寫核心事件,略寫次要內容)</td></tr>
+                            <tr><td class="font-bold">插敘/倒敘</td><td>打破平鋪直敘,增強可讀性 (回憶過去的事件,補充背景資訊)</td></tr>
+                            <tr><td class="font-bold">以小見大</td><td>通過細節反映宏大主題 (通過個人經歷反映社會現象)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-blue-400 pl-3">伏筆與照應</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="cute-table">
+                        <thead><tr class="!bg-blue-100"><th class="!text-blue-800">概念</th><th class="!text-blue-800">定義</th><th class="!text-blue-800">作用</th><th class="!text-blue-800">例子</th></tr></thead>
+                        <tbody class="text-sm">
+                            <tr><td class="font-bold">伏筆</td><td>在故事前期暗示未來情節的細節,可能是對話、物件、環境描寫等</td><td>製造懸念、鋪墊轉折,讓結局更合理。</td><td rowspan="2">伏筆:角色隨口提到「這把槍走火過」<br>↓<br>情節:角色與他人衝突,槍被奪<br>↓<br>照應:敵方使用該槍時意外走火,角色脫險</td></tr>
+                            <tr><td class="font-bold">照應</td><td>在故事後期回收伏筆,揭開前期暗示的真相。</td><td>滿足讀者期待,強化故事結構的完整性。</td></tr>
+                            <tr><td class="font-bold text-center bg-gray-50" colspan="4"><strong>關係：</strong>伏筆需隱晦但合理,照應需自然且有意義。伏筆與照應能形成「呼應」,讓讀者產生「原來如此」的驚喜感。</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-blue-400 pl-3">常見句段作用</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="cute-table">
+                        <thead><tr class="!bg-blue-100"><th class="!text-blue-800 w-16">位置</th><th class="!text-blue-800">結構作用</th><th class="!text-blue-800">內容作用</th><th class="!text-blue-800 w-2/5">具體說明與範例</th></tr></thead>
+                        <tbody class="text-sm">
+                            <tr>
+                                <td class="font-bold text-center">開首</td>
+                                <td>1. 總領全文<br>2. 開啟下文<br>3. 為下文鋪墊<br>4. 埋下伏筆<br>5. 設置懸念</td>
+                                <td>1. 交代背景<br>2. 渲染氣氛<br>3. 烘托人物心情<br>4. 奠定基調</td>
+                                <td>
+                                    <ul class="list-disc ml-4 space-y-1">
+                                        <li>那是一個風雨交加的夜晚……(渲染緊張氣氛)</li>
+                                        <li>二十年後,我依然記得那個微笑……(埋下伏筆)</li>
+                                        <li>小鎮的鐘聲每天準時響起……(交代背景)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-center">中間</td>
+                                <td>1. 過渡段/句<br>2. 承接上文<br>3. 開啟下文<br>4. 前後照應<br>5. 總結上文<br>6. 承上啟下<br>7. 呼應上文<br>8. 埋下伏筆</td>
+                                <td>1. 抒發感情<br>2. 突出人物形象<br>3. 補充交代情節<br>4. 解釋原因<br>5. 鮮明對比<br>6. 轉折點<br>7. 深化衝突<br>8. 鋪墊高潮</td>
+                                <td>
+                                    <ul class="list-disc ml-4 space-y-1">
+                                        <li>然而,事情並沒有那麼簡單……(轉折)</li>
+                                        <li>他的眼睛裡閃過一絲猶豫……(突出人物性格)</li>
+                                        <li>這一切都要從三個月前說起……(補充情節)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-center">結尾</td>
+                                <td>1. 首尾呼應<br>2. 總結全文<br>3. 呼應題目</td>
+                                <td>1. 點出題旨<br>2. 深化主題<br>3. 抒發感情<br>4. 引起思考<br>5. 開放式結局<br>6. 昇華意境</td>
+                                <td>
+                                    <ul class="list-disc ml-4 space-y-1">
+                                        <li>就像開頭那株幼苗,終於長成了大樹……(首尾呼應)</li>
+                                        <li>這個問題,值得每個人深思……(引起思考)</li>
+                                        <li>她望著遠方,露出了微笑……(開放式)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-blue-400 pl-3">詳略安排</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 p-4 rounded-xl border border-red-100">
+                        <h4 class="font-black text-red-600 border-b border-red-200 pb-2 mb-2 text-center">詳寫 (突出主題)</h4>
+                        <ul class="list-disc list-inside text-sm space-y-1 text-gray-700">
+                            <li>突出主題/深化主題</li>
+                            <li>突出主題深意的重要時刻</li>
+                            <li>突出關鍵人物的思想/心情</li>
+                            <li>突出關鍵事物/環境烘托</li>
+                            <li>引發思考,強化主題深度</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                        <h4 class="font-black text-gray-600 border-b border-gray-300 pb-2 mb-2 text-center">略寫 (與主題關係不大，起補充作用)</h4>
+                        <ul class="list-disc list-inside text-sm space-y-1 text-gray-700">
+                            <li>與主題關係不大</li>
+                            <li>次要人物/情節</li>
+                            <li>背景資料</li>
+                            <li>過渡</li>
+                            <li>連接性內容</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 mb-6">
+                    <h4 class="font-bold text-blue-800 mb-2">✍️ A對表達主題的作用 (答題模板)</h4>
+                    <p class="text-sm font-bold text-gray-700 mb-2">步驟：1. 明確指出A的具體內容 ➔ 2. 明確指出主題 ➔ 3. 分析A與主題的關聯</p>
+                    <div class="bg-white p-3 rounded-lg text-sm mb-3">
+                        「A」刻劃了 <strong>[內容]</strong>，突出了 <strong>[主題]</strong> 的主題，引發讀者對 <strong>[對象]</strong> 的共鳴/反思，使文章主題更深刻。
+                    </div>
+                    <div class="bg-yellow-50 p-3 rounded-lg text-sm text-gray-800 border-l-4 border-yellow-400">
+                        <strong>題目示例：</strong>文中仔細刻劃「父親的背影」,對表達文章主題有什麼作用?(《背影》)<br>
+                        <strong>答案：</strong>文中通過細膩描寫父親「蹣跚地穿過鐵道」「爬上月台」的背影,直接呼應主題「親情的無言付出」,突出父親沉默而厚重的愛,引起讀者的共鳴,令文章主題更深刻。
+                    </div>
+                </div>
+
+                <div class="dse-question-box">
+                    <h4 class="font-bold text-gray-800 mb-3"><i class="fas fa-pencil-alt text-blue-500"></i> DSE 題型實戰</h4>
+                    <ol class="list-decimal ml-5 text-sm space-y-2 text-gray-700">
+                        <li>第7段末句「倚欄望遠,頗有『我欲乘風歸去』之慨。」在結構上起了什麼作用?試略加說明。</li>
+                        <li>承上題,試說明作者怎樣運用這種寫作手法作扣連。</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="strategy-04" class="cute-card p-8">
+                <div class="inline-block bg-purple-100 text-purple-600 font-black px-4 py-1 rounded-full mb-2">Strategy 04</div>
+                <h2 class="text-3xl font-black mb-6 flex items-center gap-3">
+                    <span class="bg-cutePurple w-12 h-12 flex items-center justify-center rounded-2xl shadow-sm text-2xl">✨</span> 字詞句賞析
+                </h2>
+
+                <div class="bg-purple-50 p-4 rounded-xl border border-purple-100 mb-6 inline-block">
+                    <h3 class="font-bold text-purple-700 mb-1"><i class="fas fa-bullseye"></i> 考點</h3>
+                    <ul class="list-disc ml-5 text-sm">
+                        <li>分析詞句的核心方法</li><li>詞語色彩、引申義及雙關義</li><li>句子深層涵義</li>
+                        <li>修辭作用</li><li>標點作用</li><li>對表達主題的作用</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-purple-400 pl-3">分析詞句的核心方法</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="cute-table">
+                        <thead><tr class="!bg-purple-100"><th class="!text-purple-800 w-1/5">方法</th><th class="!text-purple-800 w-2/5">技巧</th><th class="!text-purple-800">例子</th></tr></thead>
+                        <tbody class="text-sm">
+                            <tr>
+                                <td class="font-bold">語境分析法</td>
+                                <td>結合上下文理解詞句的真實含義<br>· 定位詞句所在段落<br>· 分析前後文的邏輯關係(因果/轉折/遞進)</td>
+                                <td>「孔乙己是站著喝酒而穿長衫的唯一的人」→「穿長衫」在語境中體現其迂腐守舊又窮困潦倒的矛盾。</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">修辭解密法</td>
+                                <td>識別比喻、象徵等修辭的真實所指。<br>· 比喻——本體+喻體相似<br>· 反語——表面義與實際義<br>· 雙關——字面義+隱含義</td>
+                                <td>「月光如流水」→突出柔和連續。</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">詞義推敲法</td>
+                                <td>通過詞性、感情色彩、古今義等精准把握。<br>· 褒貶色彩<br>· 語體差異(文言詞/口語詞)<br>· 特殊用法(詞類活用/通假字)</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-purple-50 p-5 rounded-2xl border border-purple-200 mb-8">
+                    <h4 class="font-bold text-purple-800 mb-2"><i class="fas fa-magic"></i> 答題萬用步驟：</h4>
+                    <ol class="list-decimal ml-5 text-sm mb-3 space-y-1">
+                        <li>定位詞句: 明確分析物件</li>
+                        <li>表層含義: 解釋字面意思</li>
+                        <li>深層含義: 結合語境/修辭/背景分析</li>
+                        <li>功能作用: 說明對文本的意義</li>
+                    </ol>
+                    <p class="text-sm leading-relaxed bg-white p-3 rounded-lg border border-purple-100 font-bold">
+                        「XX」字面指 (表層義)，在文中實際表達 (深層義)，通過 (手法/語境) 傳遞了 (情感/思想)，起到 (作用)。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 border-l-4 border-purple-400 pl-3">詞語色彩、引申義及雙關義</h3>
+                        <div class="bg-white p-4 rounded-xl border border-purple-100 shadow-sm mb-4">
+                            <h4 class="font-bold text-purple-700 mb-2">詞語色彩</h4>
+                            <ul class="list-disc ml-5 text-sm space-y-1">
+                                <li><strong>褒義詞：</strong>讚許、肯定、喜愛</li>
+                                <li><strong>貶義詞：</strong>批評、鄙視、憎惡</li>
+                                <li><strong>中性詞：</strong>沒有感情傾向、冷漠</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-purple-100 shadow-sm mb-4">
+                            <h4 class="font-bold text-purple-700 mb-2">邏輯層次</h4>
+                            <ul class="list-disc ml-5 text-sm space-y-1">
+                                <li>由淺入深、由表入裡、由現象到本質</li>
+                                <li>層層遞進關係，環環相扣，層層深入</li>
+                                <li>與上文對應</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-xl text-sm">
+                            <strong>答題步驟：</strong>表達立場 ➔ 比較點1或2 ➔ A好 ➔ B不好(不能表達原意) ➔ 重申比較點
+                            <br><br><strong>常見比較點：</strong>1. 詞語色彩 2. 與主題關係 3. 作者意圖/感情/抒情效果/人物形象 4. 語調
+                            <br><br><strong>常見題型：</strong>
+                            <ol class="list-decimal ml-4 mt-1">
+                                <li>把A改為B,你認為表達效果有什麼不同?</li>
+                                <li>可以把A和B次序調換嗎?為什麼?(通常與「邏輯」有關)</li>
+                                <li>A和B,何者較為理想?</li>
+                                <li>A可以刪除嗎?為什麼?</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 border-l-4 border-purple-400 pl-3">句子深層涵義/寓意</h3>
+                        <div class="bg-white p-4 rounded-xl border border-purple-100 shadow-sm mb-4">
+                            <h4 class="font-bold text-purple-700 mb-2">從以下角度入手：</h4>
+                            <ul class="list-disc ml-5 text-sm space-y-1">
+                                <li>關鍵詞 (動詞、有感情色彩的詞語、形容詞、副詞)</li>
+                                <li>修辭手法 (還原原句、意思明白的句子)</li>
+                                <li>在文章的位置</li>
+                                <li>文章主旨</li>
+                                <li>相鄰句子 (隱含信息)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-xl text-sm">
+                            <strong>答題步驟：</strong>語譯句子(文言文)/分析修辭 ➔ 表面意義 ➔ 語境意義 ➔ 言外之意
+                            <br><br>
+                            <ul class="list-disc ml-4 space-y-1">
+                                <li>運用了什麼修辭手法</li>
+                                <li>表面含義表達的是……</li>
+                                <li>實際上的深層含義(聯繫上下文、主題、作者意圖、道理、情感等)：褒揚、諷刺、歌頌、批判、暗示、啟示</li>
+                            </ul>
+                            <br><strong>常見題型：</strong>
+                            <ol class="list-decimal ml-4 mt-1">
+                                <li>劃線句子的含義是什麼?</li>
+                                <li>劃線句子有何深意?</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-purple-400 pl-3">修辭手法作用</h3>
+                <div class="bg-white p-4 rounded-xl border border-purple-100 mb-6">
+                    <ul class="list-disc ml-5 text-sm space-y-2 text-gray-700">
+                        <li><strong>比喻：</strong>把A比作B,生動形象地寫出了A的特點,形象更加鮮明,表達作者的感情。</li>
+                        <li><strong>誇張：</strong>誇大……/誇小……突出的……特點,強烈表達作者的……之情。</li>
+                        <li><strong>擬人：</strong>賦予人的感情、動作,使事物形象鮮明突出,表達了作者對……的感情。</li>
+                        <li><strong>排比：</strong>增強文章的氣勢,便於說理,表達作者……的感情。</li>
+                        <li><strong>反復：</strong>突出、強調……加強表達效果,增加文章感染力。</li>
+                        <li><strong>反問：</strong>加強語氣,引起讀者的思考。</li>
+                        <li><strong>設問：</strong>引人注意,啟發思考;突出……的內容,使文章波瀾起伏,給讀者留下深刻印象。</li>
+                    </ul>
+                    <div class="mt-4 p-3 bg-gray-50 rounded-lg text-sm">
+                        <strong>常見題型：</strong> 1. 句子A用了什麼修辭手法?有什麼表達效果? <br>2. 句子A運用……(修辭手法),對表達文章主旨有什麼作用?
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-purple-400 pl-3">標點符號作用</h3>
+                <div class="overflow-x-auto mb-4">
+                    <table class="cute-table">
+                        <tbody class="text-sm">
+                            <tr>
+                                <td class="font-bold text-purple-700 w-1/6">引號</td>
+                                <td>· 表示引用、特定稱謂、含義/雙關意義<br>· 表示諷刺和嘲笑<br>· 表示強調</td>
+                                <td class="font-bold text-purple-700 w-1/6">感嘆號</td>
+                                <td>表示感嘆,突出語氣</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-purple-700">句號</td>
+                                <td>表示完結</td>
+                                <td class="font-bold text-purple-700">問號</td>
+                                <td>表示疑問</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-purple-700">逗號</td>
+                                <td>表示停頓</td>
+                                <td class="font-bold text-purple-700">破折號</td>
+                                <td>· 表示解釋說明<br>· 表示語音延長<br>· 表示意思轉換,跳躍或轉折</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-purple-700">省略號</td>
+                                <td colspan="3">· 省略、話斷斷續續<br>· 在表示節省原文或語句未完、意思未盡,讓讀者有自己的思考,體會作者意思<br>· 表示沉默,無語<br>· 表示含糊其辭,欲言又止</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bg-gray-50 p-3 rounded-lg text-sm mb-8 inline-block">
+                    <strong>常見題型：</strong> 1. 句子A的引號有甚麼作用? 2. 句子A的引號可以刪除嗎? 3. 句子A的句號可以改為省略號嗎?
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-purple-400 pl-3">對表達主題的作用 (實戰題型)</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="cute-table">
+                        <thead><tr class="!bg-purple-100"><th class="!text-purple-800 w-1/4">例子</th><th class="!text-purple-800">分析</th></tr></thead>
+                        <tbody class="text-sm">
+                            <tr>
+                                <td class="font-bold">《荷塘月色》<br>「熱鬧是它們的,我什麼也沒有」</td>
+                                <td>
+                                    > 表層:寫蟬聲蛙鳴的熱鬧與「我」無關<br>
+                                    > 深層:表達作者無法融入現實的孤獨苦悶<br>
+                                    > 手法:以樂景襯哀情<br>
+                                    > 作用:揭示知識份子在時代中的彷徨
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">《背影》<br>「他肥胖的身子向左微傾,顯出努力的樣子」</td>
+                                <td>
+                                    > 表層:描寫父親爬月臺的動作<br>
+                                    > 深層:■「肥胖」與「努力」對比→突出父愛的笨拙而真摯 ■「微傾」細節→表現小心翼翼的愛<br>
+                                    > 手法:白描手法抓取典型細節<br>
+                                    > 作用:使父愛形象具體可感,催人淚下,引發讀者共鳴
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="dse-question-box">
+                    <h4 class="font-bold text-gray-800 mb-3"><i class="fas fa-pencil-alt text-purple-500"></i> DSE 題型實戰</h4>
+                    <ol class="list-decimal ml-5 text-sm space-y-2 text-gray-700">
+                        <li>以下兩節引文分別提及「刀」和「雕刀」。試根據文意,說明「刀」和「雕刀」的含意。</li>
+                        <li>在第4段,作者指出「古人說,君子之交淡如水,把小人之交比作醴,也許是存了戒心說的。」作者所提及的「戒心」是指什麼?試略加解說。</li>
+                        <li>在第2段,作者說「職業」是公認的人生依托,有些人卻稱之為「事業」。「職業」和「事業」有何不同?試以醫生為例說明兩者的分別。</li>
+                        <li>作者在末段說:「我們坐在那兒看它,彷彿看見人生。」她對人生有何領悟?</li>
+                        <li>在第10段,作者探討了生與死的關係。試就「能自你的多情中諦聽我,從我的無情裏注釋你啊!」一句,說明作者對生與死有何領悟。</li>
+                        <li>在第14段,作者寫到「這就是跑道:繁榮中有一種孤獨」。試綜合全文,說明句中的「繁榮」和「孤獨」分別指什麼。</li>
+                        <li>在第4段,詩歌的末句說「半人半神走了,神就來了」,這句詩有何寓意?試綜合詩歌的內容說明。</li>
+                        <li>作者在「拋在腦後」一詞加上引號,有什麼作用?試根據文意略加說明。</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="strategy-05" class="cute-card p-8">
+                <div class="inline-block bg-yellow-100 text-yellow-600 font-black px-4 py-1 rounded-full mb-2">Strategy 05</div>
+                <h2 class="text-3xl font-black mb-6 flex items-center gap-3">
+                    <span class="bg-cuteYellow w-12 h-12 flex items-center justify-center rounded-2xl shadow-sm text-2xl">🦋</span> 比喻與象徵
+                </h2>
+
+                <div class="bg-yellow-50 p-4 rounded-xl border border-yellow-100 mb-6 inline-block">
+                    <h3 class="font-bold text-yellow-700 mb-1"><i class="fas fa-brain"></i> 知識點</h3>
+                    <ul class="list-disc ml-5 text-sm space-y-1">
+                        <li><strong>象徵：</strong>一般象徵意義 ➔ 文中角色的經歷 ➔ 作者詮釋的意義。運用象徵能使無窮之時空，抽象的感情，凝聚到具體的物象上，使意味深長。</li>
+                        <li><strong>比喻：</strong>相似點 ➔ 本體特徵 ➔ 喻體特徵</li>
+                        <li><strong>提問相似點：</strong>1.本體特徵 2.喻體特徵 3.相似之處 (答案具備三個元素)</li>
+                    </ul>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    <!-- 比喻 Table -->
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 border-l-4 border-yellow-400 pl-3">比喻 (Metaphor)</h3>
+                        <p class="text-sm mb-2 text-gray-600">重在<strong>相似性</strong> (A 像 B)。</p>
+                        <div class="overflow-x-auto">
+                            <table class="cute-table text-sm">
+                                <thead><tr class="!bg-yellow-100"><th class="!text-yellow-800 w-1/3">作用</th><th class="!text-yellow-800">例子</th></tr></thead>
+                                <tbody>
+                                    <tr><td class="font-bold">化抽象為具體, 增強理解力</td><td>「時間像離弦的箭一樣飛逝。」<br>「他的心裡像壓了一塊沉重的石頭。」<br>「知識是照亮黑暗的明燈。」</td></tr>
+                                    <tr><td class="font-bold">化陌生為熟悉</td><td>「CPU是電腦的大腦。」<br>「DNA像一條雙螺旋的梯子。」</td></tr>
+                                    <tr><td class="font-bold">增強形象性和生動性</td><td>「沙漠夜晚的星空,像打翻了的珠寶盒...」<br>「她的眼睛像閃爍的黑曜石。」<br>「會場裡彌漫著冰窖般的沉默。」</td></tr>
+                                    <tr><td class="font-bold">深化情感, 引發共鳴</td><td>「思念像藤蔓,悄悄爬滿了心房。」<br>「等待的滋味,像生銹的鈍刀在心上慢慢割。」<br>「重逢的喜悅,像久旱逢甘霖。」</td></tr>
+                                    <tr><td class="font-bold">突出特徵, 強化印象</td><td>「他瘦得像一根竹竿。」<br>「她的意志堅如磐石。」<br>「謠言像野火一樣蔓延。」</td></tr>
+                                    <tr><td class="font-bold">激發想像力和思考</td><td>「人生如逆旅,我亦是行人。」<br>「記憶是落在湖心的雪,看似清晰,一觸即碎。」</td></tr>
+                                    <tr><td class="font-bold">增添文采和趣味性</td><td>「他的話匣子一打開,就像壞了的水龍頭...」<br>「他像上了鎖的保險櫃,密不透風。」</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- 象徵 Table -->
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 border-l-4 border-orange-400 pl-3">象徵 (Symbolism)</h3>
+                        <p class="text-sm mb-2 text-gray-600">重在<strong>代表性</strong> (A 代表/暗示 C)。</p>
+                        <div class="overflow-x-auto">
+                            <table class="cute-table text-sm">
+                                <thead><tr class="!bg-orange-100"><th class="!text-orange-800 w-1/4">作用</th><th class="!text-orange-800 w-1/3">說明</th><th class="!text-orange-800">例子</th></tr></thead>
+                                <tbody>
+                                    <tr><td class="font-bold">濃縮複雜概念</td><td>用單一具體物象承載抽象、龐大、難以直述的內涵</td><td>魯迅《藥》的「人血饅頭」→濃縮「民眾愚昧」與「革命悲劇」。<br>《老人與海》的「大海」→人類與命運的抗爭。</td></tr>
+                                    <tr><td class="font-bold">超越語言限制</td><td>表達不可言說的情感或哲思</td><td>卡夫卡《變形記》的「甲蟲」→現代人異化與存在荒誕。<br>張愛玲《金鎖記》的「黃金枷鎖」→物質欲望扭曲人性。</td></tr>
+                                    <tr><td class="font-bold">喚醒感性體驗</td><td>通過意象激發讀者感官聯想，營造氛圍。</td><td>白先勇《台北人》的「鏡子」→流亡記憶的破碎感。<br>蕭紅《生死場》的「寒夜」→生存的絕望。</td></tr>
+                                    <tr><td class="font-bold">強化情感張力</td><td>將個人情感提升為普世共鳴。</td><td>曹禺《雷雨》中的「雷雨」→家庭關係的毀滅性釋放。<br>梵谷《星空》的漩渦→內在痛苦視覺化爆發。</td></tr>
+                                    <tr><td class="font-bold">創造開放結局</td><td>象徵結尾避免直白結論,引發無盡詮釋。</td><td>電影《全面啟動》的「旋轉陀螺」→真實與虛幻的永恆辯證。</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-yellow-500 pl-3">比喻 VS 象徵</h3>
+                <div class="overflow-x-auto mb-8">
+                    <table class="cute-table text-sm">
+                        <thead><tr class="!bg-gray-100"><th class="w-1/6">特徵</th><th class="w-2/5">比喻</th><th>象徵</th></tr></thead>
+                        <tbody>
+                            <tr><td class="font-bold">核心機制</td><td>指出相似性(本體&喻體)</td><td>代表/暗示(象徵物→抽象意義)</td></tr>
+                            <tr><td class="font-bold">目的</td><td>使描述更生動、形象、易懂</td><td>表達抽象、複雜、深層的內涵,引發思考</td></tr>
+                            <tr><td class="font-bold">關係基礎</td><td>直接的、可感知的相似性</td><td>約定俗成、文化賦予、語境構建的關聯性</td></tr>
+                            <tr><td class="font-bold">表達方式</td><td>較顯性(常用比喻詞)</td><td>較隱性(不直接點明,需解讀)</td></tr>
+                            <tr><td class="font-bold">意義層次</td><td>相對單一、表層</td><td>豐富、深層、多義</td></tr>
+                            <tr><td class="font-bold">範圍</td><td>局部、短暫(句子、段落)</td><td>可局部,也可整體、貫穿(核心意象、體系)</td></tr>
+                            <tr><td class="font-bold">例子</td><td>問君能有幾多愁?恰似一江春水向東流。</td><td>白鴿→和平; 十字架→基督教;「鐵屋子」→封建禁錮</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-gradient-to-r from-yellow-50 to-orange-50 p-5 rounded-2xl mb-6">
+                    <h4 class="font-bold text-orange-800 mb-2"><i class="fas fa-exclamation-triangle mr-2 text-yellow-500"></i>作答注意事項</h4>
+                    <ol class="list-decimal list-inside text-sm space-y-2 ml-2 mb-4">
+                        <li>審閱示例，留意本體和喻體之間,有多少相似之處,若多於一項相似,必須分別說明。</li>
+                        <li>留意題目有沒有特別要求。「根據段旨」說明,即是說,學生不能只指出二者的相似點,也要因應段旨的方向作答。</li>
+                        <li>本體與喻體之間,一定有相似的關係,學生必須有意識地把二者共同特點去比較。</li>
+                        <li>準確指出所比喻的事物，留意文中喻體的<strong>詞性組合</strong>，更要以相對應的詞組回答題問。</li>
+                        <li>有些喻指題,要求學生「綜合全文」回答。學生必須特別留心文章的主題,若能細心思考主題才回答,有助掌握答案。</li>
+                    </ol>
+                    <div class="bg-white p-3 rounded-lg border border-yellow-200 text-sm">
+                        <strong class="text-orange-600">舉例：《聰明人和傻子和奴才》2019</strong><br>
+                        故事中奴才居住的地方「破小屋」比喻什麼? 傻子想為奴才「開一個窗」又比喻什麼?<br><br>
+                        破(形容詞)+小屋(名詞) ➔ 腐敗的政權/內憂外患的中國<br>
+                        開(動詞)+一個窗(名詞) ➔ 學生以此結構再配合文意推敲所比喻的本體。<br>
+                        例如:破,是形容小屋的情況,也暗指當時中國人身處惡劣環境。小屋,是奴才居住的地方,也指當時的中國/社會/政治制度。答案必須是(形容詞)+(名詞)。
+                    </div>
+                </div>
+
+                <div class="dse-question-box">
+                    <h4 class="font-bold text-gray-800 mb-3"><i class="fas fa-pencil-alt text-yellow-500"></i> DSE 題型實戰</h4>
+                    <ol class="list-decimal ml-5 text-sm space-y-2 text-gray-700">
+                        <li>本文以「跑道」為題,體悟卻不局限於跑道上。根據文中「跑道」的特點,就你個人對本文的體會,「跑道」可以比喻什麼?試說明你的看法。</li>
+                        <li>承上題,按泥土的象徵意義,試說明「(我們)有了失去泥土的悲哀」的原因。</li>
+                        <li>本文以番薯喻人。試綜合全文,指出以下番薯比喻具備哪些特點的人。</li>
+                        <li>在第5段,作者以金屬的不同特質比喻凡夫和英雄。試根據段旨說明金屬、凡夫和英雄的不同特質。</li>
+                        <li>本篇善用象徵手法,試就以下引文有關手電筒光芒的描述加以說明。</li>
+                        <li>在第2段,作者以什麼事物比喻跑步的節奏?又這事物與跑步的節奏有什麼相似之處?試略加說明。</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="strategy-06" class="cute-card p-8">
+                <div class="inline-block bg-pink-100 text-pink-600 font-black px-4 py-1 rounded-full mb-2">Strategy 06</div>
+                <h2 class="text-3xl font-black mb-6 flex items-center gap-3">
+                    <span class="bg-pink-200 w-12 h-12 flex items-center justify-center rounded-2xl shadow-sm text-2xl">🎵</span> 語調節奏句式
+                </h2>
+
+                <div class="bg-pink-50 p-4 rounded-xl border border-pink-100 mb-6 inline-block">
+                    <h3 class="font-bold text-pink-700 mb-1"><i class="fas fa-bullseye"></i> 考點</h3>
+                    <ul class="list-disc ml-5 text-sm">
+                        <li>分辨句子語調對表達情感的作用</li><li>分辨句子節奏對表達情感的作用</li><li>分辨不同句式對表達情感的作用</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-pink-400 pl-3">常見句子節奏及效果</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="cute-table text-sm">
+                        <thead><tr class="!bg-pink-100"><th class="!text-pink-800 w-1/6">類型</th><th class="!text-pink-800 w-1/4">特徵</th><th class="!text-pink-800 w-1/4">例子</th><th class="!text-pink-800">效果</th></tr></thead>
+                        <tbody>
+                            <tr><td class="font-bold text-pink-600">明快短促</td><td>短句為主,少修飾,動詞密集。</td><td>跑!跳!沖!(《運動》)</td><td>· 表現緊張、激烈或興奮的情緒<br>· 增強動作的即時性與畫面感</td></tr>
+                            <tr><td class="font-bold text-pink-600">舒緩綿長</td><td>長句、複合句,多修飾語或並列結構。</td><td>那是一片緩緩沉入暮色的,帶著蘆葦低語的湖泊。</td><td>· 營造寧靜、悠遠或憂鬱的氛圍<br>· 引導讀者沉浸于細膩的感官體驗</td></tr>
+                            <tr><td class="font-bold text-pink-600">錯落跌宕</td><td>長短句交替,停頓突兀。</td><td>閃電劈下——然後,寂靜。(《雷雨》)</td><td>· 表現矛盾、轉折或戲劇性衝突<br>· 製造懸念或情感衝擊</td></tr>
+                            <tr><td class="font-bold text-pink-600">循環往復</td><td>重複句式或疊詞,形成韻律回環。</td><td>走吧,走吧,人總要學著自己長大。(《愛的代價》)</td><td>· 強調主題,深化情感<br>· 產生音樂性,便於記憶</td></tr>
+                            <tr><td class="font-bold text-pink-600">破碎跳躍</td><td>句子成分省略,意象碎片化。</td><td>枯藤。老樹。昏鴉。(馬致遠《天淨沙・秋思》)</td><td>· 表現孤獨、混亂或現代性疏離<br>· 激發讀者聯想補全畫面</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-xl border mb-8 text-sm">
+                    <h4 class="font-bold text-gray-700 mb-2">常見節奏的表達功能</h4>
+                    <ul class="list-disc ml-5 space-y-1">
+                        <li><strong>情緒調控：</strong>快節奏→激昂、焦慮；慢節奏→沉思、哀傷</li>
+                        <li><strong>意象強化：</strong>如《牛》中「餓不死,吃不飽」的短促節奏,凸顯生存困境的窒息感</li>
+                        <li><strong>主題暗示：</strong>迴圈節奏多用於宿命感,破碎節奏常指向異化主題</li>
+                        <li><strong>讀者引導：</strong>舒緩節奏留出品味空間,急促節奏迫使讀者緊跟敘事</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-pink-400 pl-3">常見句子語調及效果</h3>
+                <div class="overflow-x-auto mb-4">
+                    <table class="cute-table text-sm">
+                        <thead><tr class="!bg-pink-100"><th class="!text-pink-800 w-1/6">類型</th><th class="!text-pink-800 w-1/4">特徵</th><th class="!text-pink-800 w-1/4">例子</th><th class="!text-pink-800">效果</th></tr></thead>
+                        <tbody>
+                            <tr><td class="font-bold text-pink-600">抒情溫柔</td><td>柔和詞彙,比喻性語言,流暢的長句。</td><td>她的歌聲像月光,靜靜流淌在夜的河流裡。</td><td>· 營造美好、治癒的氛圍<br>· 引發讀者情感共鳴</td></tr>
+                            <tr><td class="font-bold text-pink-600">冷峻客觀</td><td>中性詞彙,短句,少修飾,陳述事實。</td><td>牆高3米。鐵絲網上有血漬。</td><td>· 表現疏離感或批判性<br>· 增強真實性與壓迫感</td></tr>
+                            <tr><td class="font-bold text-pink-600">諷刺尖銳</td><td>反語、誇張、矛盾修辭。</td><td>多麼「文明」的掠奪啊——用契約代替刀劍。</td><td>· 揭露虛偽或荒誕<br>· 刺激讀者反思</td></tr>
+                            <tr><td class="font-bold text-pink-600">激昂澎湃</td><td>排比句、感嘆號、動詞密集。</td><td>起來!抗爭!摧毀這鐵籠!</td><td>· 煽動情緒,增強號召力<br>· 適用於宣言或革命主題</td></tr>
+                            <tr><td class="font-bold text-pink-600">憂鬱哀婉</td><td>消極詞彙,抑揚格韻律。</td><td>舊照片泛黃,而笑靨已成灰。</td><td>· 渲染悲傷與懷舊<br>· 形成詩意美感</td></tr>
+                            <tr><td class="font-bold text-pink-600">幽默詼諧</td><td>雙關語、意外轉折、口語化。</td><td>他說要減肥 說完又咬了一口炸雞。</td><td>· 消解嚴肅性,拉近讀者距離<br>· 用輕鬆方式探討深刻主題</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bg-yellow-50 p-3 rounded-lg text-sm border-l-4 border-yellow-400 mb-8 inline-block">
+                    <strong class="text-orange-700">辨別語調的重點：</strong><br>
+                    1. 詞彙選擇: 「殺戮」vs.「逝去」→前者冷硬,後者婉轉<br>
+                    2. 句式結構: 反問句增強挑釁感,排比句強化情感<br>
+                    3. 標點符號: 省略號(……)表留白,感嘆號(!)表激烈情緒
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-pink-400 pl-3">常見句式及效果</h3>
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="font-bold text-pink-700 mb-2">按結構分類</h4>
+                        <div class="overflow-x-auto">
+                            <table class="cute-table text-sm">
+                                <thead><tr class="!bg-pink-50"><th class="w-1/6">類型</th><th class="w-1/4">特徵</th><th class="w-1/4">例子</th><th>效果</th></tr></thead>
+                                <tbody>
+                                    <tr><td class="font-bold">短句</td><td>簡潔有力,通常由3-5個字組成。</td><td>風停了。雨住了。</td><td>· 增強節奏感,使語言緊湊有力<br>· 適用於緊張、激烈或強調的場景</td></tr>
+                                    <tr><td class="font-bold">長句</td><td>包含多個修飾成分,結構複雜。</td><td>那是一個被歲月遺忘的、長滿青苔的、連陽光都很少光顧的角落。</td><td>· 營造細膩、悠長的氛圍<br>· 適用於描寫、抒情或哲理性思考</td></tr>
+                                    <tr><td class="font-bold">散句</td><td>結構鬆散,自然流暢,接近口語。</td><td>他來了,看了看,又走了。</td><td>· 使敘述更自然,增強真實感<br>· 適用於日常對話或散文</td></tr>
+                                    <tr><td class="font-bold">整句</td><td>結構對稱,多用排比、對偶等修辭。</td><td>山不厭高,海不厭深。</td><td>· 增強語言的韻律感和氣勢<br>· 適用於詩歌、演講或強調某種觀點</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="font-bold text-pink-700 mb-2">按語氣分類</h4>
+                            <table class="cute-table text-sm">
+                                <tbody class="bg-white">
+                                    <tr><td class="font-bold">陳述句</td><td>客觀敘述事實。提供資訊，表達清晰直接。</td></tr>
+                                    <tr><td class="font-bold">疑問句</td><td>提出問題(一般/反問/設問)。增強互動，引發思考，反問加強情感。</td></tr>
+                                    <tr><td class="font-bold">感歎句</td><td>表達強烈情感。直接抒發，增強感染力。</td></tr>
+                                    <tr><td class="font-bold">祈使句</td><td>表達命令、請求。增強互動性，使語言更具行動力。</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-pink-700 mb-2">按修辭分類</h4>
+                            <table class="cute-table text-sm">
+                                <tbody class="bg-white">
+                                    <tr><td class="font-bold">排比句<br>對偶句</td><td>相同結構重複/對稱。增強氣勢節奏感/使語言工整優美。</td></tr>
+                                    <tr><td class="font-bold">倒裝句</td><td>語序顛倒，強調某一部分。突出特定資訊，增強詩意。</td></tr>
+                                    <tr><td class="font-bold">省略句</td><td>省略成分，使句子更簡潔。增強畫面感，留白讓讀者聯想。</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="strategy-07" class="cute-card p-8">
+                <div class="inline-block bg-indigo-100 text-indigo-600 font-black px-4 py-1 rounded-full mb-2">Strategy 07</div>
+                <h2 class="text-3xl font-black mb-6 flex items-center gap-3">
+                    <span class="bg-indigo-200 w-12 h-12 flex items-center justify-center rounded-2xl shadow-sm text-2xl">⚖️</span> 比較矛盾改寫評論題
+                </h2>
+
+                <div class="space-y-8">
+                    <!-- 比較題 -->
+                    <div class="bg-indigo-50 p-5 rounded-2xl border-l-4 border-indigo-400">
+                        <h3 class="text-xl font-bold text-indigo-800 mb-4 flex items-center"><i class="fas fa-search mr-2"></i> 比較題</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div class="bg-white p-3 rounded-lg border border-indigo-100">
+                                <h4 class="font-bold text-indigo-600 mb-1">常見比較點</h4>
+                                <ul class="list-disc ml-4 text-sm space-y-1">
+                                    <li><strong>對象/措施:</strong> 出發點、表現、結果、情感色彩、立場</li>
+                                    <li><strong>看法:</strong> 1.成因(前提/前設) 2.目的動機 3.達成條件 4.實踐方法 5.效果影響</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-indigo-100">
+                                <h4 class="font-bold text-indigo-600 mb-1">比較角度 (異同/差異)</h4>
+                                <div class="flex flex-wrap gap-2 text-xs">
+                                    <span class="bg-indigo-50 px-2 py-1 rounded text-indigo-700">時間 VS 空間</span>
+                                    <span class="bg-indigo-50 px-2 py-1 rounded text-indigo-700">理論 VS 應用</span>
+                                    <span class="bg-indigo-50 px-2 py-1 rounded text-indigo-700">傳統 VS 創新</span>
+                                    <span class="bg-indigo-50 px-2 py-1 rounded text-indigo-700">長期 VS 短期</span>
+                                    <span class="bg-indigo-50 px-2 py-1 rounded text-indigo-700">含蓄 VS 明確</span>
+                                    <span class="bg-indigo-50 px-2 py-1 rounded text-indigo-700">虛幻 VS 現實</span>
+                                    <span class="bg-indigo-50 px-2 py-1 rounded text-indigo-700">具體 VS 抽象</span>
+                                    <span class="bg-indigo-50 px-2 py-1 rounded text-indigo-700">個人 VS 集體</span>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="cute-table text-sm !mb-0">
+                            <thead><tr class="!bg-indigo-100"><th>分析點</th><th>對象A</th><th>對象B</th><th>對照結論</th></tr></thead>
+                            <tbody>
+                                <tr><td class="font-bold">手法形式</td><td>比喻:喻體具體</td><td>象徵:物象抽象</td><td rowspan="3" class="align-middle">A重感官直觀<br>B重觀念聯結<br><br>B更高階審美<br><br>B更系統</td></tr>
+                                <tr><td class="font-bold">讀者參與</td><td>被動接受相似性</td><td>主動解讀多義性</td></tr>
+                                <tr><td class="font-bold">主題承載</td><td>局部強化單一特徵</td><td>全局核心矛盾</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 矛盾題 -->
+                    <div class="bg-purple-50 p-5 rounded-2xl border-l-4 border-purple-400">
+                        <h3 class="text-xl font-bold text-purple-800 mb-3 flex items-center"><i class="fas fa-bolt mr-2 text-yellow-500"></i> 矛盾題</h3>
+                        <div class="bg-white p-4 rounded-xl border border-purple-100 text-sm">
+                            <p class="font-black text-red-600 mb-2 text-lg">心法：一般都不矛盾！</p>
+                            <p class="text-gray-700 mb-2">作者只是借這種表面的矛盾,帶出反思,在其中寄寓了深刻的用意,揭示深刻內涵/見解。 (或答: A是就……方面而言; B是就……方面而言的)</p>
+                            <p class="text-gray-700 mb-2"><strong>思考點：</strong>指涉不同、應該/實際、內外、情理、時間(長/短期)、動機(一般/特殊)、不同層面。</p>
+                            <p class="text-gray-700"><strong>效果：</strong>矛盾句式的使用,能加強讀者的思考,更深刻地揭示文章的主旨。(需結合文章內容解釋)</p>
+                        </div>
+                    </div>
+
+                    <!-- 改寫題 -->
+                    <div class="bg-blue-50 p-5 rounded-2xl border-l-4 border-blue-400">
+                        <h3 class="text-xl font-bold text-blue-800 mb-3 flex items-center"><i class="fas fa-pen-nib mr-2"></i> 改寫題 / 評價題</h3>
+                        <p class="text-sm mb-2 text-gray-700">1. 須具比較意識,找出原文和改寫文句的不同之處<br>2. 必須緊扣內容要旨/主旨分析表達效果</p>
+                        <div class="bg-white p-3 rounded-lg border border-blue-200 font-mono text-sm text-center font-bold text-blue-900 mb-4 shadow-inner">
+                            立場 ➜ 原句比較項目 ➜ 說明效果 ➜ 改寫句比較項目 ➜ 說明效果 ➜ 重申立場
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="cute-table text-sm !mb-0">
+                                <thead><tr class="!bg-blue-100"><th class="w-1/6">層面</th><th>分析角度</th></tr></thead>
+                                <tbody>
+                                    <tr><td class="font-bold">句子</td><td>修辭、句式 (短/長, 散/整, 疑問/感歎等)<br>節奏(快慢停頓)、語調(激昂、平淡)<br>哲理(深化中心、表達情感、啟發教育)<br>手法(有修辭 VS 平實)</td></tr>
+                                    <tr><td class="font-bold">用詞</td><td>感情色彩(褒貶、正面 VS 負面)</td></tr>
+                                    <tr><td class="font-bold">內容</td><td>內容(新穎、突出主旨)<br>對表達主旨的作用(刻畫人物形象、抒發情感等)</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-xl border mt-6 text-sm">
+                    <h4 class="font-bold text-gray-800 mb-2">句式表達效果速記</h4>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 list-disc ml-4 text-gray-700">
+                        <li><strong>肯定句：</strong>語意鮮明,肯定語氣</li>
+                        <li><strong>陳述句：</strong>語調平直</li>
+                        <li><strong>疑問句：</strong>引起思考、懸念、吸引興趣</li>
+                        <li><strong>否定句：</strong>否定語氣</li>
+                        <li><strong>雙重否定句：</strong>加強肯定語氣,情感強烈</li>
+                        <li><strong>排比句：</strong>氣勢磅礴,層層深入</li>
+                        <li><strong>反問句：</strong>加強語氣,強調感情,引人深思</li>
+                    </ul>
+                </div>
+
+                <div class="dse-question-box mt-8">
+                    <h4 class="font-bold text-gray-800 mb-3"><i class="fas fa-pencil-alt text-indigo-500"></i> DSE 題型實戰</h4>
+                    <ol class="list-decimal ml-5 text-sm space-y-2 text-gray-700">
+                        <li>試把引文中運用比喻的部分(粗體字)改為直接敍述,並須保留原意。</li>
+                        <li>作者在第1段開首言「友誼介乎必需品和奢侈品之間」,而末段則寫「(友誼)應該說是必需品」。兩者有沒有矛盾?試綜合全文加以析述。</li>
+                        <li>《夢中的父親》中「那些和父親一樣的遊子」與王鼎鈞對故鄉的看法有沒有矛盾?試分析說明。</li>
+                        <li>假若把以下句子中的「繞出」改為「領略」,你認為表達效果會否更佳?試略加說明。</li>
+                        <li>就學校教育學生而言,孔子和韓非子的看法何者較為理想?試略加說明。</li>
+                        <li>《岳陽樓記》一文,若把「銜遠山,吞長江,浩浩湯湯,橫無際涯」一句中的「銜」字改為「接」字,表達效果會否更為理想?試略加說明。</li>
+                        <li>北郭騷和聶政均為他人捨棄生命,兩人的行事何者較合乎儒家的「義」?試比較說明。</li>
+                        <li>作者認為「人各以得行其志為適」,你同意嗎?試舉生活例子,說明你的看法。</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="strategy-08" class="cute-card p-8">
+                <div class="inline-block bg-yellow-100 text-yellow-600 font-black px-4 py-1 rounded-full mb-2">Strategy 08</div>
+                <h2 class="text-3xl font-black mb-6 flex items-center gap-3">
+                    <span class="bg-yellow-200 w-12 h-12 flex items-center justify-center rounded-2xl shadow-sm text-2xl">💡</span> 主題與題目
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white p-5 rounded-xl border border-yellow-200 shadow-sm">
+                        <h3 class="text-xl font-bold mb-3 border-l-4 border-yellow-400 pl-3">題目的作用 (知識點)</h3>
+                        <ul class="list-disc ml-5 space-y-1 text-sm text-gray-700">
+                            <li>文章線索、概括文章內容/概括情節。</li>
+                            <li>突出人物形象,使人物形象更加鮮明。</li>
+                            <li>交代文章寫作對象,確立文章感情基調。</li>
+                            <li>語帶雙關,象徵或讚美人物的形象或精神。(表層/深層意義)</li>
+                            <li>含蓄、形象地揭示文章主旨,對某事件或社會現象的反思。</li>
+                            <li>設置懸念,引起讀者閱讀興趣,富有哲理,發人深省。</li>
+                            <li>交代故事發生的環境、背景。</li>
+                        </ul>
+                    </div>
+                    <div class="bg-yellow-50 p-5 rounded-xl border border-yellow-100">
+                        <h3 class="text-xl font-bold mb-3 border-l-4 border-yellow-500 pl-3">題目的常見題型</h3>
+                        <ol class="list-decimal ml-5 space-y-2 text-sm text-gray-800 font-bold">
+                            <li>文章以「……」為題,有什麼作用?</li>
+                            <li>結合文章內容,說說本文為何以「……」為題?</li>
+                            <li>將題目改為「……」好不好?為什麼?</li>
+                            <li>題目「……」的含義是什麼?</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold mb-4 border-l-4 border-yellow-400 pl-3">常見情感主題</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <div class="bg-orange-50 p-4 rounded-xl">
+                        <h4 class="font-bold text-orange-700 mb-2 text-lg">🏠 親情</h4>
+                        <p class="text-sm leading-relaxed text-gray-700"><strong>愧疚</strong>(虧欠)、<strong>感恩</strong>(回報)、<strong>依戀</strong>(渴望溫暖)、<strong>遺憾</strong>(子欲養而親不待)、<strong>犧牲</strong>(默默奉獻)、<strong>代溝</strong>(觀念衝突)、<strong>守護</strong>(相互扶持)、<strong>思念</strong>(遠遊牽掛)、<strong>寬容</strong>(包容)、<strong>傳承</strong>(精神/技藝延續)。</p>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-xl">
+                        <h4 class="font-bold text-blue-700 mb-2 text-lg">🛤️ 思鄉</h4>
+                        <p class="text-sm leading-relaxed text-gray-700"><strong>孤寂</strong>(異鄉無助)、<strong>懷舊</strong>(眷戀故土)、<strong>物是人非</strong>(返鄉滄桑)、<strong>鄉愁</strong>(身份焦慮)、<strong>童憶</strong>(追憶時光)、<strong>慰藉</strong>(鄉音食物)、<strong>近鄉情怯</strong>(又愛又怕)、<strong>落葉歸根</strong>(老年執念)、<strong>對比</strong>(他/故鄉反思)、<strong>犧牲</strong>(為生計離鄉)。</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-xl">
+                        <h4 class="font-bold text-green-700 mb-2 text-lg">🌱 成長與友情</h4>
+                        <p class="text-sm leading-relaxed text-gray-700"><strong>成長：</strong>蛻變、陣痛、迷失、責任、遺憾、孤獨、叛逆、覺醒、和解、希望。<br><strong>友情：</strong>信任、背叛、離別、純真、救贖、競爭、誤解、重逢、遺忘。</p>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-xl">
+                        <h4 class="font-bold text-purple-700 mb-2 text-lg">🌌 人生思考</h4>
+                        <p class="text-sm leading-relaxed text-gray-700">虛無與荒誕、追尋意義、時間焦慮(衰老/死亡)、自由與束縛、宿命vs自主、孤獨本質、慾望與滿足、生死觀、選擇的代價、覺醒與超脫。</p>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold mb-4 border-l-4 border-yellow-400 pl-3">常見選材與文學意象</h3>
+                <div class="overflow-x-auto mb-8">
+                    <table class="cute-table text-sm">
+                        <thead><tr class="!bg-yellow-100"><th class="w-1/6">類別</th><th class="w-1/6">情感</th><th class="w-2/5">具體表現與情境</th><th>相關意象</th></tr></thead>
+                        <tbody>
+                            <tr><td class="font-bold" rowspan="3">親情</td><td class="font-bold text-red-600">憐惜/不捨/感謝/思念/疼愛/尊敬</td><td>對年邁母親衰退的心疼；對子女遠行的牽掛；無微不至的照顧；對已逝親人的懷念；對父親堅毅形象的尊敬。</td><td>白髮、皺紋、顫抖的手、車站、行李箱、老照片、舊衣物</td></tr>
+                            <tr><td class="font-bold text-blue-600">愧疚/遺憾/痛苦</td><td>對不理解及無禮態度的內疚；未及時理解心意的自責；親人離世的巨大傷痛。</td><td>爭吵場景、未接來電、空椅子、墓碑、遺物</td></tr>
+                            <tr><td class="font-bold text-green-600">理解/和解/失落/感慨/溫暖</td><td>體會父母用心；化解心結；家庭關係疏離；團聚的幸福感。</td><td>舊書信、工具箱、冷清餐桌、團圓飯、老房子</td></tr>
+                            <tr><td class="font-bold" rowspan="2">懷舊/時光</td><td class="font-bold">懷念</td><td>昔日面貌、童年生活、玩伴遊戲、青春感傷。</td><td>老街、舊玩具、畢業紀念冊</td></tr>
+                            <tr><td class="font-bold text-purple-600">感歎/悵惘/悲涼</td><td>時光流逝、地景改變；傳統技藝失傳；景物依舊人事已非；歷史無情改變的悲涼。</td><td>拆遷標語、荒廢戲台、落葉、泛黃照片、紀念碑</td></tr>
+                            <tr><td class="font-bold">自然</td><td class="font-bold text-teal-600">熱愛/眷戀/震撼/敬畏/心痛</td><td>山林田野的寧靜；高山大海的震撼；對環境破壞的心痛焦慮。</td><td>山徑、稻浪、星空、樹樁、異常天象</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 border-l-4 border-yellow-400 pl-3">常見揭示主題方法</h3>
+                        <table class="cute-table text-sm">
+                            <tbody class="bg-white">
+                                <tr><td class="font-bold text-yellow-700">開門見山</td><td>直接指出主題。一針見血,奠定基調。</td></tr>
+                                <tr><td class="font-bold text-yellow-700">意象象徵 / 情感遞進</td><td>通過具體物象/情感變化逐步揭示。增強文學性/引發聯想。</td></tr>
+                                <tr><td class="font-bold text-yellow-700">以小見大 / 對比襯托</td><td>通過細微動作/虛實對比突出主題。強化衝突凸顯態度。</td></tr>
+                                <tr><td class="font-bold text-yellow-700">卒章顯志</td><td>在結尾直接抒發感悟。首尾呼應,強化主題。</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 border-l-4 border-yellow-400 pl-3">主題分析技巧</h3>
+                        <table class="cute-table text-sm">
+                            <tbody class="bg-white">
+                                <tr><td class="font-bold text-orange-600 w-1/4">題目</td><td>題眼凝練體現，推測方向。(例:《藥》)</td></tr>
+                                <tr><td class="font-bold text-orange-600">關鍵句</td><td>開頭結尾點題/議論句直抒胸臆。</td></tr>
+                                <tr><td class="font-bold text-orange-600">人物情節</td><td>從命運選擇提煉。(例:祥林嫂悲劇)</td></tr>
+                                <tr><td class="font-bold text-orange-600">象徵意象</td><td>具象轉抽象。(例:大觀園=繁華幻滅)</td></tr>
+                                <tr><td class="font-bold text-orange-600">情感基調</td><td>語言風格推斷(悲涼/明快)。</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-yellow-400 pl-3">題目的常見作用與答題詞彙</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="cute-table text-sm">
+                        <thead><tr class="!bg-yellow-50"><th class="w-1/6">作用</th><th class="w-1/3">解說</th><th class="w-1/4">作答詞彙</th><th>例子</th></tr></thead>
+                        <tbody>
+                            <tr><td class="font-bold">概括內容</td><td>直接揭示文章核心內容</td><td>點明事件/交代物件/概括情節</td><td>《背影》,《濟南的冬天》</td></tr>
+                            <tr><td class="font-bold">揭示主題</td><td>暗示或直接呈現文章主旨</td><td>揭示主旨/暗示主題/寄託情感</td><td>《敬畏自然》,《變色龍》</td></tr>
+                            <tr><td class="font-bold">結構線索</td><td>作為全文的組織線索</td><td>貫穿全文/呼應首尾/統領結構</td><td>《藥》,《項鍊》</td></tr>
+                            <tr><td class="font-bold">藝術表現</td><td>通過特殊手法增強表現力</td><td>設置懸念/製造反差/運用象徵</td><td>《喪鐘為誰而鳴》</td></tr>
+                            <tr><td class="font-bold">情感基調</td><td>奠定文章情感色彩</td><td>渲染氛圍/奠定基調/暗示情感</td><td>《故都的秋》,《荷塘月色》</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-6">
+                    <h4 class="font-bold text-gray-800 mb-2"><i class="fas fa-magic text-yellow-500"></i> 答題萬能模板</h4>
+                    <ul class="text-sm space-y-2">
+                        <li><strong>內容層面：</strong>「X」直接<strong>點明了</strong>(核心內容/主要物件)。</li>
+                        <li><strong>主題層面：</strong>「X」(字詞/意象)<strong>暗示/寄託</strong>了(主題思想)。</li>
+                        <li><strong>結構層面：</strong>作為線索<strong>貫穿全文</strong>，<strong>串聯</strong>起(情節/情感)發展。</li>
+                        <li><strong>藝術層面：</strong>「X」運用(修辭/手法)<strong>增強</strong>(懸念/感染力)。</li>
+                        <li><strong>情感層面：</strong>「X」一詞<strong>奠定</strong>了(情感基調)，引發讀者(感受)。</li>
+                    </ul>
+                </div>
+
+                <div class="dse-question-box">
+                    <h4 class="font-bold text-gray-800 mb-3"><i class="fas fa-pencil-alt text-yellow-600"></i> DSE 題型實戰</h4>
+                    <ol class="list-decimal ml-5 text-sm space-y-2 text-gray-700">
+                        <li>本篇題為「夢中的父親」,卻在最後一段寫到母親種種,這是否偏離主題?試說明你的看法。</li>
+                        <li>作者為什麼以「橋」為篇名?試從橋樑的象徵意義略加說明。</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="strategy-09" class="cute-card p-8">
+                <div class="inline-block bg-teal-100 text-teal-700 font-black px-4 py-1 rounded-full mb-2">Strategy 09</div>
+                <h2 class="text-3xl font-black mb-6 flex items-center gap-3">
+                    <span class="bg-teal-200 w-12 h-12 flex items-center justify-center rounded-2xl shadow-sm text-2xl">✨</span> 巧妙之處 (作用與效果)
+                </h2>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-teal-400 pl-3">文章元素的表達效果</h3>
+                <div class="overflow-x-auto mb-8">
+                    <table class="cute-table text-sm">
+                        <thead><tr class="!bg-teal-100"><th class="!text-teal-800 w-1/5">作用類別</th><th class="!text-teal-800">具體說明</th></tr></thead>
+                        <tbody>
+                            <tr><td class="font-bold">情感表達 / 主旨抒述</td><td>· 抒發對社會現象、人物命運的感慨<br>· 流露對特定群體的同情或悲憫<br>· 反思人生無常與無奈</td></tr>
+                            <tr><td class="font-bold">社會功能</td><td>· 提醒關注被忽視議題 (弱勢處境、環境危機)<br>· 批判現實不公現象</td></tr>
+                            <tr><td class="font-bold">植物描寫 (象徵層面)</td><td>· 以花喻人 (番薯花→樸實堅韌)<br>· 對比植物特質 (牽牛花張揚 vs. 番薯花謙卑)</td></tr>
+                            <tr><td class="font-bold">情節推動 / 主題深化</td><td>· 植物狀態暗示時間流逝 (凋謝→父親年邁)<br>· 觸發情感轉折 (忽視植物後愧疚)<br>· 以卑微植物生命力凸顯「平凡中的偉大」</td></tr>
+                            <tr><td class="font-bold">人物刻畫 (對比效果)</td><td>· 用A角色自私反襯B角色重情義<br>· 群像描寫突出主角特質<br>· 立體化角色呈現人性複雜度 / 藉人物命運批判社會問題</td></tr>
+                            <tr><td class="font-bold">結構作用 (過渡/節奏)</td><td>· 承上啟下:總結前文並鋪墊後續 / 伏筆回收:呼應開頭形成閉環<br>· 插入描寫緩解敘事節奏 / 突然轉折製造戲劇張力</td></tr>
+                            <tr><td class="font-bold">標點修辭</td><td>· 破折號: 補充說明、語氣轉折或停頓<br>· 引號: 雙關暗示言外之意、強調特殊稱謂或反諷</td></tr>
+                            <tr><td class="font-bold">綜合效果</td><td>· 渲染氛圍 (冷清/懸疑/壓抑) / 烘托人物心情 / 暗示情節發展<br>· 交代時代背景 / 諷刺特定現象 / 凸顯作者價值觀</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-teal-400 pl-3">結尾的威力 (效果與分析)</h3>
+                <div class="overflow-x-auto mb-8">
+                    <table class="cute-table text-sm">
+                        <thead><tr class="!bg-teal-50"><th class="w-1/6">類別</th><th class="w-1/4">具體手法</th><th>作用與效果</th><th>應用範例</th></tr></thead>
+                        <tbody>
+                            <tr><td class="font-bold text-teal-700">結構: 首尾呼應</td><td>· 開頭與結尾重複關鍵詞、意象<br>· 形成循環敘事</td><td>· 強化文章整體性<br>· 突顯主題, 增強張力</td><td>開頭:母親沉默縫補。<br>結尾:母親嘶吼「聽見了嗎」(控訴戰爭)</td></tr>
+                            <tr><td class="font-bold text-teal-700">意象: 核心深化</td><td>· 收結時重現或對比核心意象<br>· 意象疊加</td><td>· 具象化抽象情感<br>· 強化主旨象徵性</td><td>「搖籃空了,而砲聲未歇。」(對比保護與破壞)</td></tr>
+                            <tr><td class="font-bold text-teal-700">主旨: 巧妙呈現</td><td>· 直指核心矛盾<br>· 反問或反諷筆法</td><td>· 揭露主題荒誕性<br>· 引發深度思考</td><td>「這戰場上,誰配當母親?」(設問批判)</td></tr>
+                            <tr><td class="font-bold text-teal-700">作用: 角色/節奏</td><td>· 利用社會角色加重語調<br>· 短句、分行、破折號製造停頓</td><td>· 深化悲劇性, 營造無力感<br>· 引導讀者沉澱情緒</td><td>「她連搖籃都守不住...」(反襯惡)<br>「她終於明白——孩子不會回來了。」</td></tr>
+                            <tr><td class="font-bold text-teal-700">標點: 情緒強化</td><td>· 感歎號: 直接抒發<br>· 設問句: 開放式反思</td><td>· 突出憤怒或悲痛<br>· 邀請讀者參與反思</td><td>「這世界竟容不下一聲嬰啼!」</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-6">
+                    <h3 class="text-xl font-bold mb-3 border-l-4 border-teal-400 pl-3">常見寫作手法 (應用範例)</h3>
+                    <ul class="text-sm space-y-3">
+                        <li><strong>意象呼應：</strong>「搖籃空了,而砲聲未歇。」➔ 對比意象/空間並置 ➔ 強化戰爭破壞,凸顯無力感。</li>
+                        <li><strong>情感強化：</strong>「她抱緊那件小衣, 第一次吼出聲來:『你們聽見了嗎!』」➔ 動作細節/感歎號 ➔ 從沉默到爆發轉折,具象化悲痛,增強控訴。</li>
+                        <li><strong>節奏控制：</strong>「風沙捲過,無人回應。」➔ 短句/環境描寫/留白 ➔ 製造敘事停頓,暗示命運無情,強化孤絕氛圍。</li>
+                        <li><strong>主旨深化：</strong>「這戰場上,誰配當母親?」➔ 設問修辭/角色反詰 ➔ 開放式結尾引發反思。</li>
+                    </ul>
+                    <div class="mt-3 text-xs font-bold text-gray-500">常見題型：1. 運用了什麼手法? 2. 主角是A,為什麼交代B? 3. 刻畫A時用了什麼手法?</div>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-teal-400 pl-3">常見結尾作答詞彙速覽</h3>
+                <table class="cute-table text-sm">
+                    <tbody class="bg-white">
+                        <tr><td class="font-bold text-teal-800 w-1/4">情節收束</td><td>開放結局 / 突轉收尾 / 懸念 / 閉環 / 留白</td></tr>
+                        <tr><td class="font-bold text-teal-800">主題昇華 / 情感強化</td><td>畫龍點睛 / 卒章顯志 / 餘音繞梁 / 昇華 / 點題 / 發人深省 / 催人淚下 / 耐人尋味 / 渲染</td></tr>
+                        <tr><td class="font-bold text-teal-800">藝術表現</td><td>象徵收尾 / 首尾呼應 / 留白藝術 / 反諷</td></tr>
+                        <tr><td class="font-bold text-teal-800">人物塑造</td><td>性格定格 / 命運揭示 / 形象昇華 / 顛覆 / 救贖</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="dse-question-box mt-6">
+                    <h4 class="font-bold text-gray-800 mb-3"><i class="fas fa-pencil-alt text-teal-600"></i> DSE 題型實戰</h4>
+                    <ol class="list-decimal ml-5 text-sm space-y-2 text-gray-700">
+                        <li>上述手法又有何效果?試就引文加以說明。</li>
+                        <li>在末段,我走到河谷,看到「一百年前那個人冒雪而來」。作者這樣寫有什麼作用?試加以說明。</li>
+                        <li>作者以蓑衣戴笠老人在江面垂釣的景象收結全文,有何巧妙之處?試指出一項並加以說明。</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="strategy-10" class="cute-card p-8 relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 text-[10rem] opacity-5">📖</div>
+                <div class="inline-block bg-orange-100 text-orange-700 font-black px-4 py-1 rounded-full mb-2">Strategy 10</div>
+                <h2 class="text-3xl font-black mb-6 flex items-center gap-3">
+                    <span class="bg-orange-200 w-12 h-12 flex items-center justify-center rounded-2xl shadow-sm text-2xl">📜</span> 詩歌與小說解讀
+                </h2>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-orange-400 pl-3">古詩詞常見情感與題材</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="overflow-x-auto">
+                        <table class="cute-table text-sm !mb-0">
+                            <thead><tr class="!bg-orange-100"><th class="w-1/4">題材</th><th>內容</th></tr></thead>
+                            <tbody>
+                                <tr><td class="font-bold">山水田園</td><td>人生感悟、閑情逸趣</td></tr>
+                                <tr><td class="font-bold">詠物詩</td><td>人生感悟、志向</td></tr>
+                                <tr><td class="font-bold">送別詩</td><td>送友、思鄉、贈人</td></tr>
+                                <tr><td class="font-bold">邊塞詩</td><td>戰爭 (厭戰、渴望團聚)</td></tr>
+                                <tr><td class="font-bold">詠懷 / 史</td><td>懷親、感悟 / 借古諷今</td></tr>
+                                <tr><td class="font-bold">閨怨詩</td><td>思念丈夫/親人；青春哀怨</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="bg-orange-50 p-4 rounded-xl border border-orange-100 text-sm flex flex-col justify-center">
+                        <h4 class="font-bold text-orange-800 mb-2">核心情感分析</h4>
+                        <ul class="list-disc ml-4 space-y-2">
+                            <li><strong>憂國傷時：</strong>揭露昏庸/窮兵黷武、反映離亂痛苦、同情疾苦。</li>
+                            <li><strong>建功報國：</strong>擔憂國家命運、保衛決心、報國無門愁苦、壯志難酬。</li>
+                            <li><strong>思鄉懷人：</strong>羈旅愁思、邊關思鄉、依依不捨。</li>
+                            <li><strong>生活雜感：</strong>情深勸勉、寄情山水、昔盛今衰感慨、仕途失意苦悶、纏綿愛情、生活哲理闡釋。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-orange-400 pl-3">新詩閱讀方法</h3>
+                <div class="bg-white p-4 rounded-xl border border-orange-100 mb-6 text-sm">
+                    <p class="mb-2 text-gray-500 font-bold">常見新詩考點：詞句意思 / 意象含義 / 結尾作用 / 題目作用</p>
+                    <ul class="space-y-3">
+                        <li><span class="font-bold text-orange-600 bg-orange-100 px-2 py-0.5 rounded">1. 意象與語言：</span> 詩中事物(雨/窗/鳥)代表什麼？詞語的聲音/語調/力度。修辭如何增強效果？</li>
+                        <li><span class="font-bold text-orange-600 bg-orange-100 px-2 py-0.5 rounded">2. 節奏與結構：</span> 長短句變化、停頓(分行留白)。分行強調了什麼？段落之間並列/遞進/轉折？重複起什麼作用？</li>
+                        <li><span class="font-bold text-orange-600 bg-orange-100 px-2 py-0.5 rounded">3. 言外之音：</span> 隱喻與暗示(關於生命/歷史/時間)。空白與跳躍留下了什麼想像？反諷與悖論。</li>
+                        <li class="text-gray-500 text-xs italic">* 一首好詩往往能引發多種合理的解讀。</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 border-l-4 border-orange-400 pl-3">常見新詩結尾巧妙之處</h3>
+                <div class="overflow-x-auto mb-8">
+                    <table class="cute-table text-sm">
+                        <thead><tr class="!bg-orange-50"><th class="w-1/6">作用/效果</th><th class="w-1/3">說明</th><th>例子</th></tr></thead>
+                        <tbody>
+                            <tr><td class="font-bold">意象定格<br>強化意境</td><td>以強烈視覺/感官意象收尾,將情感凝固,營造持久氛圍。引發遐想。</td><td>「而燈,不移地照亮我們的孤獨」(《燈》)</td></tr>
+                            <tr><td class="font-bold">哲思頓悟<br>點明題旨</td><td>結尾以凝練警句、箴言或直接議論揭示核心思想。發人深省。</td><td>「卑鄙是卑鄙者的通行證...」(《回答》)</td></tr>
+                            <tr><td class="font-bold">懸置留白<br>開放聯想</td><td>不提供明確答案,戛然而止留下疑問,製造「空缺」。</td><td>「我只願面朝大海,春暖花開」(《面朝大海...》)</td></tr>
+                            <tr><td class="font-bold">語言回環<br>結構呼應</td><td>重複開篇意象,形成環形結構。產生音樂感與宿命感。</td><td>「你裝飾了別人的夢。」(《斷章》)</td></tr>
+                            <tr><td class="font-bold">情感逆轉<br>製造張力</td><td>突然轉折,顛覆預期(希望到幻滅)。戲劇性強,凸顯衝突。</td><td>「我不是歸人,是個過客...」(《錯誤》)</td></tr>
+                            <tr><td class="font-bold">降格淡出<br>聲音延續</td><td>落回平淡日常,消解崇高感。或利用擬聲詞讓詩意迴響。</td><td>「鑰匙在鎖孔裡轉了一下」(《甜蜜的復仇》)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 border-l-4 border-orange-400 pl-3">小說的開頭與結尾</h3>
+                        <table class="cute-table text-sm">
+                            <tbody class="bg-white">
+                                <tr><td class="font-bold text-orange-700 w-1/4">開頭：設置懸念</td><td>引起思考,引出下文,突出人物,揭示主題,吸引讀者。</td></tr>
+                                <tr><td class="font-bold text-orange-700">開頭：寫景法</td><td>交代環境、渲染氣氛、烘托人物心情。</td></tr>
+                                <tr><td class="font-bold text-orange-700">結局：出人意料</td><td>陡然生波瀾,震撼人心；與前文伏筆照應,情理之中；深化主題。</td></tr>
+                                <tr><td class="font-bold text-orange-700">結局：悲劇/大團圓</td><td>悲劇引人思考/大團圓予人欣慰,凸顯美好人性。</td></tr>
+                                <tr><td class="font-bold text-orange-700">結局：戛然而止</td><td>留給讀者想象空間,進行藝術再創造。</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 border-l-4 border-orange-400 pl-3">抒情與說理方法</h3>
+                        <table class="cute-table text-sm mb-2">
+                            <tbody class="bg-white">
+                                <tr><td class="font-bold text-red-600 w-1/4">直接抒情</td><td>樸實真切,震動人心,引起強烈共鳴。</td></tr>
+                                <tr><td class="font-bold text-red-600">借景/物抒情</td><td>含蓄委婉；情景交融,感染力強。</td></tr>
+                                <tr><td class="font-bold text-red-600">借事抒情</td><td>牽引讀者投入,真摯坦率無做作。</td></tr>
+                            </tbody>
+                        </table>
+                        <table class="cute-table text-sm">
+                            <tbody class="bg-white">
+                                <tr><td class="font-bold text-blue-600 w-1/4">直接說理</td><td>清楚明白,容易理解。</td></tr>
+                                <tr><td class="font-bold text-blue-600">借物/事說理</td><td>把抽象道理說得具體,引人深思,增說服力。</td></tr>
+                                <tr><td class="font-bold text-blue-600">對比/比喻</td><td>突出特質,化抽象為具體易明。</td></tr>
+                                <tr><td class="font-bold text-blue-600">引用說理</td><td>更具說服力(權威),易於明白。</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-xl border text-sm mb-6 flex flex-wrap gap-2 justify-center">
+                    <h4 class="font-bold text-gray-800 w-full text-center mb-2">🎯 效果總覽 (百搭詞彙)</h4>
+                    <span class="bg-white border px-3 py-1 rounded-full">形象鮮明</span>
+                    <span class="bg-white border px-3 py-1 rounded-full">生動具體</span>
+                    <span class="bg-white border px-3 py-1 rounded-full">增加趣味/神秘感</span>
+                    <span class="bg-white border px-3 py-1 rounded-full">清楚明白</span>
+                    <span class="bg-white border px-3 py-1 rounded-full">引人反思</span>
+                    <span class="bg-white border px-3 py-1 rounded-full">有權威/加強說服力</span>
+                    <span class="bg-white border px-3 py-1 rounded-full">加強共鳴</span>
+                    <span class="bg-white border px-3 py-1 rounded-full">一針見血</span>
+                    <span class="bg-white border px-3 py-1 rounded-full">抽象變具體</span>
+                    <span class="bg-white border px-3 py-1 rounded-full">增加氣勢</span>
+                    <span class="bg-white border px-3 py-1 rounded-full">留下想像空間</span>
+                    <span class="bg-white border px-3 py-1 rounded-full">深化主旨</span>
+                </div>
+
+                <div class="dse-question-box">
+                    <h4 class="font-bold text-gray-800 mb-3"><i class="fas fa-pencil-alt text-orange-500"></i> DSE 題型實戰</h4>
+                    <ol class="list-decimal ml-5 text-sm space-y-2 text-gray-700">
+                        <li>作者從愛蜜莉·狄瑾蓀的詩歌領悟到怎樣把個人心中的驕傲、孤獨與自戀放下。試根據詩歌的內容說明。</li>
+                    </ol>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="bg-white py-10 text-center text-gray-500 border-t border-pink-100">
+        <p class="font-black text-xl text-pink-500 mb-2">✨ 祝你 DSE 考試順利，考獲佳績！ ✨</p>
+        <p class="text-sm font-bold">Prepared with ❤️ for DSE Students</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for sidebar links and active state mapping
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('.toc-link');
+            const sections = document.querySelectorAll('section');
+
+            // Smooth scroll
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Highlight active link on scroll
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                links.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
